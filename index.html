@@ -4,17 +4,17 @@
 		<meta charset="utf-8">
 		<script>
 			function isValid() {
-				return document.querySelector("input[name=q]").value !== '' && document.querySelector("input[name=engine]:checked");
+				return document.querySelector("input[name=q]").value && document.querySelector("input[name=engine]:checked");
 			}
 
 			function setSearchEngine() {
 				if (isValid()) {
 					let radioValue = document.querySelector("input[name=engine]:checked").value;
 					let actions = {
-						"google": "https://www.google.com/",
+						"google": "https://www.google.com/search",
 						"duckDuckGo": "https://www.duckduckgo.com/",
 						"bing": "https://www.bing.com/",
-						"ask": "https://www.ask.com/",
+						"ask": "https://www.ask.com/web",
 					}
 					document.querySelector("form").setAttribute('action', actions[radioValue]);
 				} else {
