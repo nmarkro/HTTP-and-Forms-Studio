@@ -8,30 +8,26 @@
 			}
 
 			function setSearchEngine() {
-				let radioValue = document.querySelector("input[name=engine]:checked").value;
-				let actions = {
-					"google": "https://www.google.com/",
-					"duckDuckGo": "https://www.duckduckgo.com/",
-					"bing": "https://www.bing.com/",
-					"ask": "https://www.ask.com/",
+				if (isValid()) {
+					let radioValue = document.querySelector("input[name=engine]:checked").value;
+					let actions = {
+						"google": "https://www.google.com/",
+						"duckDuckGo": "https://www.duckduckgo.com/",
+						"bing": "https://www.bing.com/",
+						"ask": "https://www.ask.com/",
+					}
+					document.querySelector("form").setAttribute('action', actions[radioValue]);
+				} else {
+					event.preventDefault();
 				}
-				document.querySelector("form").setAttribute('action', actions[radioValue]);
 			}
 
 			window.addEventListener("load", function(){
-				let form = document.querySelector("form");
-				form.addEventListener("submit", function(event) {
-					if (isValid()) {
-						setSearchEngine();
-					} else {
-						event.preventDefault();
-					}
-				});
+				document.querySelector("form").addEventListener("submit", setSearchEngine);
 			});
 		</script>
 	</head>
 	<body>
-
 		<form id="searchForm">
 			<input type="text" name="q"/>
 			<input type="radio" id="google" name="engine" value="google"/>
@@ -44,6 +40,5 @@
 			<label for="google">Ask</label>
 			<input type="submit" value="Go!">
 		</form>
-
 	</body>
 </html>
